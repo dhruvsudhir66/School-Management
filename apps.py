@@ -199,6 +199,9 @@ def logout():
     return redirect('/login')
 
 
+"""Assign Students"""
+
+
 @app.route('/assign-students', methods=['GET', 'POST'])
 @login_required
 def assign_students():
@@ -246,6 +249,10 @@ def assign_students():
         
     return render_template('assign-students.html', students=students)
 
+
+"""View Assigned Students"""
+
+
 @app.route('/view-assigned-students', methods=['GET'])
 @login_required
 def view_assigned_students():
@@ -266,6 +273,10 @@ def view_assigned_students():
     
     return render_template('view_assigned_students.html', assigned_students=assigned_students)
 
+
+"""View Assigned Teachers"""
+
+
 @app.route('/view-assigned-teachers', methods=['GET'])
 @login_required
 def view_assigned_teachers():
@@ -285,6 +296,9 @@ def view_assigned_teachers():
     conn.close()
     
     return render_template('view_assigned_teachers.html', assigned_teachers=assigned_teachers)
+
+
+"""Profile"""
 
 
 @app.route('/profile', methods=['GET', 'POST'])
@@ -334,6 +348,10 @@ def profile():
                 conn.close()
     
     return render_template('profile.html', user=user_data)
+
+
+"""Unassign Students"""
+
 
 @app.route('/unassign-student/<int:student_id>', methods=['POST'])
 @login_required
