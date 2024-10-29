@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+    .error {
+        color: red;
+    }
+</style>
+
+<div class="card shadow border-0">
+    <div class="card-header text-center bg-light">
+        <h2>Update Profile</h2>
+    </div>
+    <div class="card-body">
+        <form method="POST" id="profileForm">
+            <!-- Name Field -->
+            <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" value="{{user.name}}">
+            </div>
+            
+            <!-- Email Field -->
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" value="{{user.email}}">
+            </div>
+            
+            <!-- Password Section -->
+            <h5 class="mt-4">Change Password</h5>
+            <hr>
+            
+            <!-- Current Password Field -->
+            <div class="mb-3">
+                <label for="current_password" class="form-label">Current Password</label>
+                <input type="password" class="form-control" id="current_password" name="current_password" placeholder="Enter current password">
+            </div>
+            
+            <!-- New Password Field -->
+            <div class="mb-3">
+                <label for="new_password" class="form-label">New Password</label>
+                <input type="password" class="form-control" id="new_password" name="new_password" placeholder="Enter new password">
+            </div>
+            
+            <!-- Confirm Password Field -->
+            <div class="mb-3">
+                <label for="confirm_password" class="form-label">Confirm New Password</label>
+                <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm new password">
+            </div>
+            
+            <!-- Submit Button -->
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary mt-4">Update Profile</button>
+                <a href="{{ url_for('dashboard') }}" class="btn btn-secondary mt-4">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    $("#profileForm").validate({
+        rules: {
+            name: {
+                required: true
+            },
+            email: {
+                required: true,
+                email: true
+            },
+            current_password: {
+                required: true
+            },
+            new_password: {
+                required: true,
+                minlength: 6
+            },
+            confirm_password: {
+                required: true,
+                equalTo: "#new_password"
+            }
+
+        },
+        messages: {
+            name: {
+                required: "Please enter your name"
+            },
+            email: {
+                required: "Please enter your email",
+                email: "Please enter a valid email"
+            },
+            current_password: {
+                required: "Please enter your current password"
+            },
+            new_password: {
+                required: "Please enter your new password"
+            },
+            confirm_password: {
+                required: "Please confirm your new password",
+                equalTo: "Passwords do not match"
+            }
+        }
+    });
+</script>
+
+{% endblock %}

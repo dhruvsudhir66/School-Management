@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}School Management System{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <!-- Welcome Section -->
+    <div class="text-center">
+        <h1>Welcome to the School Management System</h1>
+        <p class="lead">Efficiently manage your school's operations with ease.</p>
+        <hr class="my-4">
+    </div>
+
+    <!-- Call-to-Action Section -->
+    <div class="text-center mt-5">
+        {% if session.get('user_name') %}
+            <h3>Welcome back, {{ session['user_name'] }}!</h3>
+            <a href="{{ url_for('dashboard') }}" class="btn btn-success">Go to Dashboard</a>
+        {% else %}
+            <h3>Ready to get started?</h3>
+            <a href="{{ url_for('login') }}" class="btn btn-primary">Login</a>
+            <a href="{{ url_for('register') }}" class="btn btn-secondary">Register</a>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

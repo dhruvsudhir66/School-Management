@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+    .error {
+        color: red;
+    }
+</style>
+
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="card p-4" style="width: 100%; max-width: 400px;">
+        <h3 class="text-center mb-4">Login</h3>
+        
+        <!-- Login Form -->
+        <form action="/login" method="POST" id="loginForm">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block" id="login-btn">Login</button>
+        </form>
+
+        <!-- Register Button -->
+        <div class="text-center mt-3">
+            <p>Not registered yet? <a href="{{ url_for('register') }}" class="btn btn-link">Register</a></p>
+        </div>
+    </div>
+</div>
+<script>
+    $("#loginForm").validate({
+        rules: {
+            email: {
+                required: true,
+                email: true
+            },
+            password: {
+                required: true
+            }
+        },
+        messages: {
+            email: {
+                required: "Please enter your email",
+                email: "Please enter a valid email"
+            },
+            password: {
+                required: "Please enter your password"
+            }
+        }
+    });
+
+</script>
+
+{% endblock %}

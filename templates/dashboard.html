@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<div class="container mt-5">
+    <h1 class="text-center">Dashboard</h1>
+    <div class="card">
+        <div class="card-header">
+            User Information
+        </div>
+        <div class="card-body text-center">
+            <h5 class="card-title">Welcome, {{ session['user_name'] }}!</h5>
+            <p class="card-text">Email: {{ current_user.email }}</p>
+            
+            {% if user_type == 2 %}  <!-- Check if user_type is 2 for teacher -->
+                <a href="{{ url_for('assign_students') }}" class="btn btn-primary">Assign Students</a>
+            {% elif user_type == 1 %}  <!-- Check if user_type is 1 for student -->
+                <a href="{{ url_for('view_assigned_teachers') }}" class="btn btn-primary">View Assigned Teachers</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock %}
